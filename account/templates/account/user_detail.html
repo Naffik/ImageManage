@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>User Detail</h1>
+  <ul>
+    <li>Username: {{ user.username }}</li>
+    <li>Email: {{ user.email }}</li>
+    <li>First Name: {{ user.first_name }}</li>
+    <li>Last Name: {{ user.last_name }}</li>
+  </ul>
+
+ <!-- Back button -->
+  {% if previous_url %}
+    <a href="{{ previous_url }}">Back</a>
+  {% else %}
+    <a href="{% url 'user_list' %}">Back to list</a>
+  {% endif %}
+{% endblock %}
