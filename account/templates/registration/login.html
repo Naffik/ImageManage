@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "account/home.html" %}
 
 {% block title %}Logowanie{% endblock %}
 
@@ -13,8 +13,9 @@
         <form action="{%  url 'login' %}" method="post">
             {{ form.as_p }}
             {% csrf_token %}
-            <input type="hidden" name="next" value=" {{ next }}" />
+            <input type="hidden" name="next" value="{{ next }}" />
             <p><input type="submit" value="Zaloguj"></p>
+            <p>Nie masz konta? <a href="{% url 'register' %}">Zarejestruj się!</a></p>
         </form>
     </div>
 {% endblock %}

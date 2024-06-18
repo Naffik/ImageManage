@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "account/home.html" %}
 
 {% block title %} Rejestracja {% endblock %}
 
@@ -10,5 +10,6 @@
     {{ profile_form.as_p }}
     {% csrf_token %}
     <p><input type="submit" value="Zarejestruj"></p>
+    <p>Posiadasz już konto? <a href="{% url 'login' %}">Zaloguj się!</a></p>
 </form>
 {% endblock %}

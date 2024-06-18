@@ -309,3 +309,25 @@ img.user-detail {
     font-style:italic;
     color:#ccc;
 }
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left-side, .right-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-side {
+    background-color: #f0f0f0;
+}
+
+.right-side {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

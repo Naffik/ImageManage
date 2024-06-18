@@ -1,6 +1,7 @@
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -11,6 +12,12 @@ from django.views.generic import ListView, DetailView
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
 
+
+def home(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
+    return redirect('login')
 
 # def user_login(request):
 #
@@ -113,7 +120,12 @@ class UserListView(LoginRequiredMixin, ListView):
     model = User
     template_name = 'account/user_list.html'
     context_object_name = 'users'
-    paginate_by = 1
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['section'] = 'users'
+        return context
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
