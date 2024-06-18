@@ -10,4 +10,9 @@
     {% csrf_token %}
     <p><input type="submit" value="Wyślij"></p>
 </form>
+{% if previous_url %}
+    <a href="{{ previous_url }}">Back</a>
+{% else %}
+    <a href="{% url 'dashboard' %}">Powrót strony głównej.</a>
+{% endif %}
 {% endblock %}

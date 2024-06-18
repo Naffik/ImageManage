@@ -331,3 +331,36 @@ img.user-detail {
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+/* Stylizacja dla listy zdjęć */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    align-items: center;
+}
+
+.image-gallery div {
+    width: 50%;
+    flex: 1 1 200px; /* Dostosuj szerokość obrazka */
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.image-gallery div:hover {
+    transform: scale(1.05);
+}
+
+.image-gallery img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+}
+
+.image-gallery a {
+    text-decoration: none;
+    color: inherit;
+}
