@@ -1,10 +1,7 @@
-<style>
-
-</style>
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>User List</h1>
+  <h1>Lista użytkowników</h1>
   <ul>
     {% for user in users %}
       <li><a href="{% url 'user_detail' user.username %}">{{ user.username }}</a></li>
@@ -15,6 +12,20 @@
 {% if is_paginated %}
   <div class="pagination">
     <ul class="pagination-list">
+      <!-- First page link -->
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1" aria-label="Previous">
+            <span aria-hidden="true">&laquo;&laquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link" aria-label="Previous">
+            <span aria-hidden="true">&laquo;&laquo;</span>
+          </span>
+        </li>
+      {% endif %}
       <!-- Previous page link -->
       {% if page_obj.has_previous %}
         <li class="page-item">
@@ -30,12 +41,16 @@
         </li>
       {% endif %}
 
-      <!-- Page number links -->
+     <!-- Page number links -->
       {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-        {% else %}
-          <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+        {% if num == 1 or num == page_obj.paginator.num_pages or num >= page_obj.number|add:'-1' and num <= page_obj.number|add:'1' %}
+          {% if page_obj.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% elif num == page_obj.number|add:'-2' or num == page_obj.number|add:'2' %}
+          <li class="page-item disabled"><span class="page-link">...</span></li>
         {% endif %}
       {% endfor %}
 
@@ -50,6 +65,20 @@
         <li class="page-item disabled">
           <span class="page-link" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
+          </span>
+        </li>
+      {% endif %}
+      <!-- Last page link -->
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+            <span aria-hidden="true">&raquo;&raquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link" aria-label="Next">
+            <span aria-hidden="true">&raquo;&raquo;</span>
           </span>
         </li>
       {% endif %}
