@@ -12,3 +12,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return 'Profil użytkownika {}'.format(self.user.username)
+
+
+class AccountTier(models.Model):
+    name = models.CharField(max_length=255, null=False, blank=False)
+    thumbnail_size = models.CharField(max_length=255, null=False, blank=False)
+    original_link = models.BooleanField(default=False)
+    expiring_link = models.BooleanField(default=False)
+    expiring_link_duration_min = models.IntegerField(default=300)
+    expiring_link_duration_max = models.IntegerField(default=30000)
+
+    def __str__(self):
+        return self.name
