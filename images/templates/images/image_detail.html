@@ -1,16 +1,25 @@
 {% extends "images/dashboard_extension.html" %}
 
 {% block content %}
-  <h1>Image Detail</h1>
-  <ul>
-    <li>pk: {{ image.pk }}</li>
-    <li>image: <img src="{{ image.original_image.url }}"></li>
-  </ul>
+    <h1>Image Detail</h1>
+    <!--        <h2>Twój poziom konta to: {{ account_tier }}</h2>-->
+    <div class="image-gallery">
+        <div class="main-image">
+            <img src="{{ image.original_image.url }}">
+        </div>
+        <div class="thumbnail-gallery">
+            {% for thumbnail in thumbnails %}
+                <div class="thumbnail">
+                    <img src="{{ thumbnail.thumbnail.url }}">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
- <!-- Back button -->
-  {% if previous_url %}
-    <a href="{{ previous_url }}">Back</a>
-  {% else %}
-    <a href="{% url 'image_upload' %}">Powrót do dodawania zdjęć.</a>
-  {% endif %}
+    <!-- Back button -->
+    {% if previous_url %}
+        <a href="{{ previous_url }}">Back</a>
+    {% else %}
+        <a href="{% url 'image_upload' %}">Powrót do dodawania zdjęć.</a>
+    {% endif %}
 {% endblock %}

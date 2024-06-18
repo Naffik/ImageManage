@@ -6,7 +6,7 @@ from django.views import View
 from django.views.generic import DetailView, ListView
 
 from images.forms import ImageForm
-from images.models import Image
+from images.models import Image, Thumbnail
 from images.utils import create_thumbnails
 
 
@@ -49,6 +49,14 @@ class ImageDetailView(LoginRequiredMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['previous_url'] = self.request.META.get('HTTP_REFERER', '')
+
+        user_profile = self.request.user.profile
+        if user_profile:
+            context['account_tier'] = user_profile.account_tier
+
+        thumbnails = Thumbnail.objects.filter(image=context['image'])
+        if thumbnails:
+            context['thumbnails'] = thumbnails
         return context
 
 
