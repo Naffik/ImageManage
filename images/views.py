@@ -7,6 +7,7 @@ from django.views.generic import DetailView, ListView
 
 from images.forms import ImageForm
 from images.models import Image
+from images.utils import create_thumbnails
 
 
 @login_required
@@ -31,7 +32,7 @@ class ImageCreateView(LoginRequiredMixin, View):
             new_image = image_form.save(commit=False)
             new_image.user = request.user
             new_image.save()
-            print(new_image.pk)
+            create_thumbnails(new_image, request.FILES['original_image'])
             messages.success(request, 'Dane zostały zaktualizowane')
         else:
             messages.error(request, 'Wystąpił błąd')
