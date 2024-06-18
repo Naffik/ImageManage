@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Panel główny{% endblock %}
-
 {% block content %}
-<h1>Panel główny</h1>
-<p>Witaj w panelu głównym.</p>
+<h1>Dashboard</h1>
+<div class="dashboard-content">
+    <!-- Główna treść dashboardu -->
+    {% block dashboard_content %}
+    <p>Witaj w panelu głównym!</p>
+    {% endblock %}
+</div>
 {% endblock %}

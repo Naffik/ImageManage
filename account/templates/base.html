@@ -15,7 +15,7 @@
                     <a href="{% url 'dashboard' %}">Panel główny</a>
                 </li>
                 <li {% if section == "images" %} class="selected" {% endif %}>
-                <a href="{% url 'dashboard' %}">Zdjęcia</a>
+                <a href="{% url 'image_upload' %}">Zdjęcia</a>
                 </li>
                 <li {% if section == "users" %} class="selected" {% endif %}>
                 <a href="{% url 'user_list' %}">Użytkownicy</a>

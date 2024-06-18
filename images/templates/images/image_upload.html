@@ -1,0 +1,13 @@
+{% extends "images/dashboard_extension.html" %}
+
+{% block title %} Dodaj zdjęcie {% endblock %}
+
+{% block content %}
+<h1>Dodaj zdjęcie</h1>
+<p>Wypenij formularz aby się dodać zdjęcie:</p>
+<form action="." method="post" enctype="multipart/form-data">
+    {{ image_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Wyślij"></p>
+</form>
+{% endblock %}
