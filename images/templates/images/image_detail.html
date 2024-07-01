@@ -1,12 +1,14 @@
 {% extends "images/dashboard_extension.html" %}
 
 {% block content %}
-    <h1>Image Detail</h1>
-    <!--        <h2>Twój poziom konta to: {{ account_tier }}</h2>-->
+    <h1>Detale zdjęcia</h1>
     <div class="image-gallery">
+        {% if original_link %}
         <div class="main-image">
             <img src="{{ image.original_image.url }}">
         </div>
+        {% endif %}
+        <p>Miniaturki</p>
         <div class="thumbnail-gallery">
             {% for thumbnail in thumbnails %}
                 <div class="thumbnail">

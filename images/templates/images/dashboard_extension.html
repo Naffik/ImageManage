@@ -2,9 +2,10 @@
 
 {% block dashboard_content %}
     {{ block.super }}
-    <div class="image-dashboard-section">
-        <h2>Zdjęcia</h2>
-        <p>Tu możesz zarządzać swoimi zdjęciami.</p>
-        <a href="{% url 'image_upload' %}">Dodaj zdjęcie</a>
-    </div>
+    <section class="hero">
+        <div class="image-dashboard-section">
+            <p>Tu możesz zarządzać swoimi zdjęciami.</p>
+            <a href="{% url 'image_upload' %}" class="btn-primary">Dodaj zdjęcie</a>
+        </div>
+    </section>
 {% endblock %}

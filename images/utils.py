@@ -19,6 +19,9 @@ def create_thumbnails(image_obj, image_file):
         original_width, original_height = im.size
         for height in reversed(thumbnail_sizes):
             image_name, image_extension = os.path.splitext(image_file.name)
+            if len(image_name) > 50:
+                image_name = image_name[:50]
+            print(image_name)
             image_extension = image_extension.lower()
             if image_extension == '.jpg':
                 image_extension = '.jpeg'

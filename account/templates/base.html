@@ -3,51 +3,67 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}IMAGES APP{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 <body>
-    <div id="header">
-        <span class="logo"><a href="{% url 'dashboard' %}">ImageManage</a></span>
-        {% if request.user.is_authenticated %}
-            <ul class="menu">
-                <li {% if section == "dashboard" %} class="selected" {% endif %}>
-                    <a href="{% url 'dashboard' %}">Panel główny</a>
-                </li>
-                <li {% if section == "images" %} class="selected" {% endif %}>
-                <a href="{% url 'image_list' %}">Zdjęcia</a>
-                </li>
-                <li {% if section == "users" %} class="selected" {% endif %}>
-                <a href="{% url 'user_list' %}">Użytkownicy</a>
-                </li>
+    <div class="container">
+        <header id="header">
+            <div class="logo">
+                <a href="{% url 'dashboard' %}">ImageManage</a>
+            </div>
+            {% if request.user.is_authenticated %}
+                <nav>
+                    <ul class="menu">
+                        <li {% if section == "dashboard" %} class="selected" {% endif %}>
+                            <a href="{% url 'dashboard' %}">Panel główny</a>
+                        </li>
+                        <li {% if section == "images" %} class="selected" {% endif %}>
+                            <a href="{% url 'image_list' %}">Moje Zdjęcia</a>
+                        </li>
+                        <li {% if section == "upload" %} class="selected" {% endif %}>
+                            <a href="{% url 'image_upload' %}">Wyślij</a>
+                        </li>
+                        <li {% if section == "profile" %} class="selected" {% endif %}>
+                            <a href="{% url 'user_detail' request.user.username %}">Profil</a>
+                        </li>
+                    </ul>
+                </nav>
+            {% endif %}
+            <div class="user">
+                {% if request.user.is_authenticated %}
+                    Witaj, {{ request.user.username }}!
+                    <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-button">
+                            Wyloguj
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}">Zaloguj</a>
+                {% endif %}
+            </div>
+        </header>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                        {{ message|safe }}
+                        <a href="#" class="close">x</a>
+                    </li>
+                {% endfor %}
             </ul>
         {% endif %}
-        <span class="user">
-            {% if request.user.is_authenticated %}
-                Witaj, {{ request.user.username }}!
-                <form method="post" action="{% url 'logout' %}" style="display:inline;">
-                    {% csrf_token %}
-                    <button type="submit" style="background:none; border:none; color:blue; cursor:pointer; text-decoration:underline; padding:0; font:inherit;">
-                        Wyloguj
-                    </button>
-                </form>
-            {% else %}
-                <a href="{% url 'login' %}">Zaloguj</a>
-            {% endif %}
-        </span>
-    </div>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li class="{{ message.tags }}">
-            {{ message|safe }}
-            <a href="#" class="close">x</a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    <div id="content">
-        {% block content %}{% endblock %}
+        <main id="content">
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>&copy; 2024 IMAGES APP. All rights reserved.</p>
+        </footer>
     </div>
 </body>
 </html>

@@ -5,14 +5,16 @@
 {% block content %}
 <h1>Dodaj zdjęcie</h1>
 <p>Wypenij formularz aby się dodać zdjęcie:</p>
-<form action="." method="post" enctype="multipart/form-data">
+<section class="upload-section">
+<form action="." method="post" enctype="multipart/form-data" class="center-form">
     {{ image_form.as_p }}
     {% csrf_token %}
-    <p><input type="submit" value="Wyślij"></p>
+    <p><input type="submit" value="Wyślij" class="btn-primary"></p>
 </form>
+</section>
 {% if previous_url %}
-    <a href="{{ previous_url }}">Back</a>
+    <a href="{{ previous_url }} " class="btn-primary back-btn">Back</a>
 {% else %}
-    <a href="{% url 'dashboard' %}">Powrót strony głównej.</a>
+    <a href="{% url 'dashboard' %}" class="btn-primary back-btn">Powrót strony głównej.</a>
 {% endif %}
 {% endblock %}

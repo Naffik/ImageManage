@@ -13,6 +13,17 @@ class Image(models.Model):
     class Meta:
         ordering = ('id',)
 
+    def get_thumbnail(self):
+        thumbnail = self.thumbnails.first()
+        if thumbnail:
+            return thumbnail.thumbnail.url
+        else:
+            return self.original_image
+
+    def save(self, *args, **kwargs):
+        print(self.original_image.name)
+        super(Image, self).save(*args, **kwargs)
+
 
 class Thumbnail(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)

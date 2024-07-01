@@ -1,18 +1,38 @@
 {% extends "base.html" %}
 
-{% block content %}
-  <h1>User Detail</h1>
-  <ul>
-    <li>Username: {{ user.username }}</li>
-    <li>Email: {{ user.email }}</li>
-    <li>First Name: {{ user.first_name }}</li>
-    <li>Last Name: {{ user.last_name }}</li>
-  </ul>
+{% load static %}
 
- <!-- Back button -->
-  {% if previous_url %}
-    <a href="{{ previous_url }}">Back</a>
-  {% else %}
-    <a href="{% url 'user_list' %}">Back to list</a>
-  {% endif %}
+{% block content %}
+  <h1>Profil użytkownika</h1>
+<section class="profile-section">
+  <div class="profile-card">
+    <div class="profile-info">
+      <img src="{% static 'images/profile-placeholder.jpg' %}" alt="Profil" class="profile-image">
+      <ul>
+        <li><strong>Nazwa użytkownika:</strong> {{ user.username }}</li>
+        <li><strong>Email:</strong> {{ user.email }}</li>
+        <li><strong>Imię:</strong> {{ user.first_name }}</li>
+        <li><strong>Nazwisko:</strong> {{ user.last_name }}</li>
+        <li><strong>Poziom konta:</strong> {{ user.profile.account_tier.name }}</li>
+        <li><strong>Ilość zdjęć:</strong> {{ user.profile.image_count }}</li>
+      </ul>
+    </div>
+    <div class="profile-actions">
+      <a href="#" id="back-button" class="btn-primary back-btn">Wróć</a>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const backButton = document.getElementById('back-button');
+    backButton.addEventListener('click', function(event) {
+      event.preventDefault();
+      if (document.referrer && document.referrer !== window.location.href) {
+        window.history.back();
+      } else {
+        window.location.href = "{% url 'dashboard' %}";
+      }
+    });
+  });
+</script>
 {% endblock %}

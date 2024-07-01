@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from images.models import Image
+
 
 class AccountTier(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
@@ -26,3 +28,6 @@ class Profile(models.Model):
     def __str__(self):
         return 'Profil użytkownika {}'.format(self.user.username)
 
+    def image_count(self):
+        images = Image.objects.filter(user=self.user)
+        return images.count()
