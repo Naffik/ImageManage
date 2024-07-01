@@ -611,3 +611,42 @@ a.like, a.follow {
 .profile-actions {
     margin-top: 20px;
 }
+/* Markdown styles */
+.markdown-content {
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.3em;
+    text-align: left; /* Dodane, aby nagłówki były wyrównane do lewej */
+}
+
+.markdown-content p {
+    line-height: 1.6;
+    margin: 0.8em 0;
+    text-align: left; /* Dodane, aby akapity były wyrównane do lewej */
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    padding-left: 20px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.markdown-content ul li,
+.markdown-content ol li {
+    margin-bottom: 0.5em;
+    text-align: left; /* Dodane, aby elementy listy były wyrównane do lewej */
+}
+
+.markdown-content code {
+    background-color: #f4f4f4;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    text-align: left; /* Dodane, aby kod był wyrównany do lewej */
+}

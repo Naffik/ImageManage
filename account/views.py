@@ -1,3 +1,5 @@
+import os
+
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -9,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.views.generic import ListView, DetailView
 
+from core import settings
 from .forms import UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile
 

@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.views.generic import DetailView, ListView
 
+from core import settings
 from images.forms import ImageForm
 from images.models import Image, Thumbnail
 from images.utils import create_thumbnails
@@ -14,7 +15,12 @@ from images.utils import create_thumbnails
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'images/dashboard_extension.html')
+    readme_path = os.path.join(settings.BASE_DIR, 'README.md')
+    with open(readme_path, 'r', encoding='utf-8') as file:
+        readme_content = file.read()
+    return render(request,
+                  'images/dashboard_extension.html',
+                  {'readme_content': readme_content})
 
 
 class ImageCreateView(LoginRequiredMixin, View):

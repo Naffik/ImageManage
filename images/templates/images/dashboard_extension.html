@@ -1,9 +1,14 @@
 {% extends "account/dashboard.html" %}
 
+{% load markdown_tags %}
+
 {% block dashboard_content %}
     {{ block.super }}
     <section class="hero">
         <div class="image-dashboard-section">
+            <div class="markdown-content">
+                {{ readme_content|markdown_to_html|safe }}
+            </div>
             <p>Tu możesz zarządzać swoimi zdjęciami.</p>
             <a href="{% url 'image_upload' %}" class="btn-primary">Dodaj zdjęcie</a>
         </div>
