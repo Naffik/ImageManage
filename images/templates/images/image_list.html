@@ -1,13 +1,13 @@
 {% extends "images/dashboard_extension.html" %}
 
 {% block content %}
-  <h1>Moje Zdjęcia</h1>
+  <h1>My Images</h1>
   <section class="images-section">
     <div class="image-grid">
       {% for image in images %}
         <div class="image-card">
           <img src="{{ image.get_thumbnail }}" alt="Thumbnail 200px">
-          <a href="{% url 'image_detail' image.pk %}" class="btn-secondary">Przejdź do szczegółów</a>
+          <a href="{% url 'image_detail' image.pk %}" class="btn-secondary">Go to details</a>
           {% comment %} <a href="#" class="btn-secondary">Get Expiring Link</a> {% endcomment %}
         </div>
       {% endfor %}
@@ -17,7 +17,7 @@
 {% if previous_url %}
     <a href="{{ previous_url }}" class="btn-primary back-btn">Back</a>
 {% else %}
-    <a href="{% url 'image_upload' %}" class="btn-primary back-btn">Powrót do dodawania zdjęć.</a>
+    <a href="{% url 'image_upload' %}" class="btn-primary back-btn">Back to adding photos</a>
 {% endif %}
 
 <!-- Custom pagination controls -->

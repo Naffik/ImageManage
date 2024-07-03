@@ -20,31 +20,31 @@
                 <nav>
                     <ul class="menu">
                         <li {% if section == "dashboard" %} class="selected" {% endif %}>
-                            <a href="{% url 'dashboard' %}">Panel główny</a>
+                            <a href="{% url 'dashboard' %}">Main panel</a>
                         </li>
                         <li {% if section == "images" %} class="selected" {% endif %}>
-                            <a href="{% url 'image_list' %}">Moje Zdjęcia</a>
+                            <a href="{% url 'image_list' %}">My images</a>
                         </li>
                         <li {% if section == "upload" %} class="selected" {% endif %}>
-                            <a href="{% url 'image_upload' %}">Wyślij</a>
+                            <a href="{% url 'image_upload' %}">Upload</a>
                         </li>
                         <li {% if section == "profile" %} class="selected" {% endif %}>
-                            <a href="{% url 'user_detail' request.user.username %}">Profil</a>
+                            <a href="{% url 'user_detail' request.user.username %}">Profile</a>
                         </li>
                     </ul>
                 </nav>
             {% endif %}
             <div class="user">
                 {% if request.user.is_authenticated %}
-                    Witaj, {{ request.user.username }}!
+                    Welcome, {{ request.user.username }}!
                     <form method="post" action="{% url 'logout' %}" style="display:inline;">
                         {% csrf_token %}
                         <button type="submit" class="logout-button">
-                            Wyloguj
+                            Logout
                         </button>
                     </form>
                 {% else %}
-                    <a href="{% url 'login' %}">Zaloguj</a>
+                    <a href="{% url 'login' %}">Sing in</a>
                 {% endif %}
             </div>
         </header>

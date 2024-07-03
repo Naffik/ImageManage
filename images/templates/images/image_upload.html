@@ -1,20 +1,22 @@
 {% extends "images/dashboard_extension.html" %}
 
-{% block title %} Dodaj zdjęcie {% endblock %}
+{% block title %} Add photo {% endblock %}
 
 {% block content %}
-<h1>Dodaj zdjęcie</h1>
-<p>Wypenij formularz aby się dodać zdjęcie:</p>
+<div class="content-header">
+    <h1>Add photo</h1>
+    <p>Fill out the form to add a photo:</p>
+</div>
 <section class="upload-section">
 <form action="." method="post" enctype="multipart/form-data" class="center-form">
     {{ image_form.as_p }}
     {% csrf_token %}
-    <p><input type="submit" value="Wyślij" class="btn-primary"></p>
+    <p><input type="submit" value="Submit" class="btn-primary"></p>
 </form>
 </section>
 {% if previous_url %}
     <a href="{{ previous_url }} " class="btn-primary back-btn">Back</a>
 {% else %}
-    <a href="{% url 'dashboard' %}" class="btn-primary back-btn">Powrót strony głównej.</a>
+    <a href="{% url 'dashboard' %}" class="btn-primary back-btn">Back to the home page</a>
 {% endif %}
 {% endblock %}

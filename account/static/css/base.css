@@ -1,7 +1,11 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
 }
 
 body {
@@ -18,6 +22,13 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
+    position: relative;
+}
+
+#container {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -71,7 +82,7 @@ header .user {
 header .logout-button {
     background: none;
     border: none;
-    color: blue;
+    color: #fff;
     cursor: pointer;
     text-decoration: underline;
     padding: 0;
@@ -96,8 +107,6 @@ main p {
 
 .dashboard-content{
     flex: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 .hero {
@@ -120,7 +129,7 @@ main p {
     padding: 0.5em 1em;
     text-decoration: none;
     border-radius: 4px;
-    transition: color 0.15s;
+    transition: background-color 0.15s;
 }
 
 .btn-primary:hover {
@@ -138,25 +147,20 @@ main p {
     margin-top: 0.5em;
 }
 footer {
+    height: 30px;
+    flex-shrink: 0;
     background-color: #343a40;
     color: #fff;
     text-align: center;
     padding: 10px 0;
     margin-top: auto;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 p {
     line-height: 1.8;
-}
-
-
-a {
-    color: #12c064;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #00a74f;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -181,16 +185,16 @@ ol {
 #header {
     padding: 10px 100px;
     font-size: 14px;
-    background: #12c064;
+    background-color: #343a40;
     color: #fff;
-    border-bottom: 4px solid #1cdf78;
+    border-bottom: 4px solid #007bff;
     overflow: auto;
 }
 
 #header .logo {
     font-family: 'Muli', sans-serif;
     float: left;
-    color: #f3f7cc;
+    color: #fff;
     font-size: 20px;
     margin-right: 10%;
 }
@@ -213,7 +217,7 @@ ol {
 }
 
 #header a {
-    color: #f3f7cc;
+    color: #fff;
 }
 
 #header a:hover {
@@ -227,6 +231,9 @@ ol {
 
 #content {
     padding: 30px 100px 0px 100px;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 50px;
 }
 
 #content h1 {
@@ -300,8 +307,8 @@ input, textarea {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #12c064;
-  border-color: #12c064;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 .page-item.disabled .page-link {
@@ -323,8 +330,8 @@ input, textarea {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #12c064;
-  border-color: #12c064;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 .page-item.disabled .page-link {
@@ -346,8 +353,8 @@ input, textarea {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #12c064;
-  border-color: #12c064;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
 .page-item.disabled .page-link {
@@ -447,68 +454,45 @@ ul.messages li a.close {
 .left-side {
     background-color: #f0f0f0;
 }
-/* images */
-.image-preview, .image-detail {
-    max-width: 300px;
-    float: left;
-    margin: 0 20px 20px 0;
-}
 
-.image-detail {
-    margin-top: 20px;
-}
+/* Images details */
 
-.image-info div {
-    padding: 20px 0;
-    overflow: auto;
-}
-
-.count {
-    color: #aaa;
-    border: 3px solid #bbb;
-    border-radius: 26px;
-    padding: 10px 20px;
-    margin: 20px 10px 0;
-}
-
-a.like, a.follow {
-    float: right;
-    margin-top: -8px;
-}
-
-#image-list {
-    overflow: auto;
-}
-
-#image-list .image {
-    float: left;
-    width: 220px;
-    height: 300px;
-    margin: 0 10px 10px 10px;
-    border-top: 8px solid #12c064;
-    background: #eee;
-}
-
-#image-list img {
-    width: 220px;
-    height: 220px;
+.image-details-section {
+    min-width: calc(100% - 200px);
+    max-width: calc(100% - 200px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 0 auto;
+    padding: 100px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
 }
 
 /* Updated styles for image gallery */
 .image-gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     gap: 1em;
     list-style-type: none;
     padding: 0;
     margin: 0;
 }
 
-.image-gallery div {
+/* .image-gallery div {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+} */
+
+.main-image img{
+    max-width: calc(100% - 60px);
+    padding: 30px;
 }
 .image-grid {
     display: grid;
@@ -533,28 +517,26 @@ a.like, a.follow {
 }
 
 .image-card img {
-    width: 200px;
+    min-width: 168px;
     max-height: 250px;
 }
 
 /* Upload form */
-.upload-section {
-    margin: auto;
-    width: 50%;
-    height: 300px;
-    padding: 20px;
-    border: solid 1px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    font-size: larger;
-    /* display: flex;
-    flex-direction: column; */
-    /* justify-content: center;
-    align-items: center; */
-    margin-top: 20vw;
+.upload-section, .profile-section, .edit-section{
+    min-height: 40%;
+    max-height: 25%;
+    max-width: 40%;
+    min-width: 25%;
+    margin: 0 auto;
+    top: -100px;
+    padding: 100px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
 }
 
 .center-form{
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -562,21 +544,14 @@ a.like, a.follow {
 
 /* User profile */
 
-.profile-container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    text-align: center;
-}
-
 .profile-card {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.profile-card a {
+    margin-top: 20px;
 }
 
 .profile-info {
@@ -608,9 +583,26 @@ a.like, a.follow {
     color: #333;
 }
 
-.profile-actions {
-    margin-top: 20px;
+/* Porfile edit section */
+
+.edit-section p {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
+
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; /* Adjust the gap between buttons if needed */
+    margin-top: 20px; /* Adjust the top margin if needed */
+}
+
+.form-actions .btn-primary, .form-actions .back-btn {
+    display: inline-block;
+    margin: 0;
+}
+
 /* Markdown styles */
 .markdown-content {
     padding: 20px;

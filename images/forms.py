@@ -8,7 +8,7 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ('original_image',)
-        labels = {'original_image': 'Zdjęcie'}
+        labels = {'original_image': 'Image'}
         widgets = {
             'name': FileInput(attrs={
                 'class': "form-control",

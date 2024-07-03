@@ -1,27 +1,31 @@
 {% extends "images/dashboard_extension.html" %}
 
 {% block content %}
-    <h1>Detale zdjęcia</h1>
-    <div class="image-gallery">
-        {% if original_link %}
-        <div class="main-image">
-            <img src="{{ image.original_image.url }}">
-        </div>
-        {% endif %}
-        <p>Miniaturki</p>
-        <div class="thumbnail-gallery">
-            {% for thumbnail in thumbnails %}
-                <div class="thumbnail">
-                    <img src="{{ thumbnail.thumbnail.url }}">
-                </div>
-            {% endfor %}
-        </div>
+<div class="content-header">
+    <h1>Image details</h1>
+    <p>You can see the details of the image with coresponding thumbnails.</p>
+</div>
+<section class="image-details-section">
+<div class="image-gallery">
+    {% if original_link %}
+    <div class="main-image">
+        <img src="{{ image.original_image.url }}">
     </div>
-
-    <!-- Back button -->
-    {% if previous_url %}
-        <a href="{{ previous_url }}">Back</a>
-    {% else %}
-        <a href="{% url 'image_upload' %}">Powrót do dodawania zdjęć.</a>
     {% endif %}
+    <p>Thumbnails</p>
+    <div class="thumbnail-gallery">
+        {% for thumbnail in thumbnails %}
+            <div class="thumbnail">
+                <img src="{{ thumbnail.thumbnail.url }}">
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</section>
+
+{% if previous_url %}
+    <a href="{{ previous_url }}" class="btn-primary back-btn">Back</a>
+{% else %}
+    <a href="{% url 'image_upload' %}" class="btn-primary back-btn">Back to adding photos.</a>
+{% endif %}
 {% endblock %}

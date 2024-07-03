@@ -5,17 +5,17 @@
 {% block content %}
 <h1>Logowanie</h1>
     {% if form.errors %}
-    <p>Nieprawidłowy login lub hasło.</p>
+    <p>Invalid login or password.</p>
     {% else %}
-    <p>Wypełnij poniższy formularz, aby się zalogować:</p>
+    <p>Fill out the form below to log in:</p>
     {% endif %}
     <div class="login-from">
         <form action="{%  url 'login' %}" method="post">
             {{ form.as_p }}
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ next }}" />
-            <p><input type="submit" value="Zaloguj"></p>
-            <p>Nie masz konta? <a href="{% url 'register' %}">Zarejestruj się!</a></p>
+            <p><input type="submit" value="Zaloguj" class="btn-primary"></p>
+            <p>Don't have an account? <a href="{% url 'register' %}">Sing up!</a></p>
         </form>
     </div>
 {% endblock %}

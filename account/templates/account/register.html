@@ -1,15 +1,15 @@
 {% extends "account/home.html" %}
 
-{% block title %} Rejestracja {% endblock %}
+{% block title %} Registration {% endblock %}
 
 {% block content %}
-<h1>Rejestracja</h1>
-<p>Wypenij formularz aby się zarejestrować:</p>
+<h1>Registration</h1>
+<p>Fill out the form to register:</p>
 <form action="." method="post">
     {{ user_form.as_p }}
     {{ profile_form.as_p }}
     {% csrf_token %}
-    <p><input type="submit" value="Zarejestruj"></p>
-    <p>Posiadasz już konto? <a href="{% url 'login' %}">Zaloguj się!</a></p>
+    <p><input type="submit" value="Zarejestruj" class="btn-primary"></p>
+    <p>Already have an account? <a href="{% url 'login' %}">Sign in!</a></p>
 </form>
 {% endblock %}

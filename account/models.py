@@ -26,7 +26,7 @@ class Profile(models.Model):
     account_tier = models.ForeignKey(AccountTier, on_delete=models.CASCADE, null=True, blank=False)
 
     def __str__(self):
-        return 'Profil użytkownika {}'.format(self.user.username)
+        return 'User {} profile'.format(self.user.username)
 
     def image_count(self):
         images = Image.objects.filter(user=self.user)

@@ -78,7 +78,7 @@ class ImageListView(LoginRequiredMixin, ListView):
     model = Image
     template_name = 'images/image_list.html'
     context_object_name = 'images'
-    paginate_by = 21
+    paginate_by = 14
 
     def get_queryset(self):
         return Image.objects.prefetch_related('thumbnails').filter(user=self.request.user).order_by('-created_at')

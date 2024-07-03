@@ -8,9 +8,9 @@ from .models import Profile
 #     username = forms.CharField()
 #     password = forms.CharField(widget=forms.PasswordInput)
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Hasło',
+    password = forms.CharField(label='Password',
                                widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Powtórzone hasło',
+    password2 = forms.CharField(label='Repeat Password',
                                 widget=forms.PasswordInput)
 
     class Meta:
@@ -20,7 +20,7 @@ class UserRegistrationForm(forms.ModelForm):
         def clean_password2(self):
             cd = self.cleaned_data
             if cd['password'] != cd['password2']:
-                raise forms.ValidationError('Hasła nie są takie same')
+                raise forms.ValidationError('Passwords are not the same')
             return cd['password2']
 
 
@@ -34,3 +34,4 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('date_of_birth', 'photo')
+        labels = {'photo': 'Avatar'}
